@@ -18,12 +18,17 @@ io.on('connection', (socket) => {
     //al cliente
     // revisar la config que hay en el html para terminar de entender
     // ademas de un string puro tambine podemos enviar un objeto con mas contenido
-    
-    socket.emit('mensaje-server', 'dentro del server'); // socket del lado del sevidor
 
+    socket.emit('mensaje-server', 'dentro del server'); // socket del lado del sevidor
 
     socket.on('mensaje-cliente', (data) => {
         console.log(data);
+    });
+
+    socket.on('mensaje-a-server', (msjClient) => {
+        console.log(msjClient);
+
+        socket.emit('mostrar-mensaje', msjClient);
     });
 });
 

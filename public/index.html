@@ -19,7 +19,7 @@
                 <input type="text" id="txtMessage" placeholder="Mensaje" class="form-control">
             </div>
             <div class="col-4">
-                <button class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
         </div>
     </form>
@@ -27,7 +27,6 @@
     <div class="row">
         <div class="col">
             <ul id="misMensajes" class="mt-2">
-                <li></li>
             </ul>
         </div>
     </div>
@@ -43,7 +42,23 @@
 
         // referencias al DOM
         const form = document.querySelector('#form');
-        const mensajes = document.querySelector('misMensajes');
+        const mensajes = document.querySelector('#misMensajes');
+        const txt = document.querySelector('#txtMessage');
+
+        form.addEventListener( 'submit', (ev) =>{
+            ev.preventDefault();
+
+            const nuevoMensaje = txtMessage.value;
+
+            // console.log(nuevoMensaje);
+           socket.emit('mensaje-a-server', {texto: nuevoMensaje}); 
+        });
+
+        socket.on('mostrar-mensaje', (msjClient) =>{
+            console.log(msjClient);
+
+            mensajes.innerHTML += `<li>${msjClient.texto}</li>`
+        })
 
 
         // .on y argumento, este argumento es al que se esta escuchando
