@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
     socket.on('mensaje-a-server', (msjClient) => {
         console.log(msjClient);
 
-        socket.emit('mostrar-mensaje', msjClient);
+        io.emit('mostrar-mensaje', msjClient);
     });
 });
 
