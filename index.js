@@ -13,14 +13,21 @@ io.on('connection', (socket) => {
     console.log("ID del socket:", socket.id);
 
     // .emit emite un evento, son instrucciones que se disparan
-    // mi primer argumento es el evento que se dispara y el segundo
-    // argumento es el payload, el argumento que queremos enviar
-    // al cliente
-    // socket del lado del sevidor
+    // mi primer argumento es el evento que se dispara y el segundo 
+    //argumento es el payload, el argumento que queremos enviar
+    //al cliente
     // revisar la config que hay en el html para terminar de entender
-    socket.emit('welcome', 'dentro del server');
+    // ademas de un string puro tambine podemos enviar un objeto con mas contenido
+    
+    socket.emit('mensaje-server', 'dentro del server'); // socket del lado del sevidor
+
+
+    socket.on('mensaje-cliente', (data) => {
+        console.log(data);
+    });
 });
 
 server.listen(8080, () => {
+    console.log('--------------------');
     console.log('Servidor corriendo en el puerto :8080');
 });
