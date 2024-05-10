@@ -54,10 +54,10 @@
            socket.emit('mensaje-a-server', {texto: nuevoMensaje}); 
         });
 
-        socket.on('mostrar-mensaje', (msjClient) =>{
-            console.log(msjClient);
+        socket.on('mostrar-mensaje', (data) =>{
+            console.log(data);
 
-            mensajes.innerHTML += `<li>${msjClient.texto}</li>`
+            mensajes.innerHTML += `<li>${data.texto}</li>`
         })
 
 
